@@ -8,7 +8,7 @@ const schema = z.object({
     .nonempty("Description is required!")
     .min(3, "Description needs to be atleast 3 characters!"),
   amount: z.number({ invalid_type_error: "Amount is required!" }),
-  category: z.number({ invalid_type_error: "You should choose a category" }),
+  category: z.string().nonempty("You need to choose a category"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -59,14 +59,14 @@ const ExpenseForm = ({ categories, onSubmit }: Props) => {
       <div className="mb-3">
         <label htmlFor="category">Category</label>
         <select
-          {...register("category", { valueAsNumber: true })}
+          {...register("category")}
           name="category"
           id="category"
           className="form-select"
         >
           <option value="">Select a category</option>
           {categories.map((category, index) => (
-            <option key={index} value={index}>
+            <option key={index} value={category}>
               {category}
             </option>
           ))}

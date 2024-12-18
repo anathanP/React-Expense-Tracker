@@ -15,9 +15,10 @@ type FormData = z.infer<typeof schema>;
 
 interface Props {
   categories: string[];
+  onSubmit: (data: FieldValues) => void;
 }
 
-const ExpenseForm = ({ categories }: Props) => {
+const ExpenseForm = ({ categories, onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
@@ -25,7 +26,6 @@ const ExpenseForm = ({ categories }: Props) => {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
-  const onSubmit = (data: FieldValues) => console.log(data);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">

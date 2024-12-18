@@ -1,9 +1,10 @@
+import { categories } from "../categories";
+
 interface Props {
-  categories: string[];
   changeFilter: (category: string) => void;
 }
 
-const FilterForm = ({ categories, changeFilter }: Props) => {
+const FilterForm = ({ changeFilter }: Props) => {
   return (
     <form>
       <div className="mb-3">

@@ -1,6 +1,7 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { categories } from "../categories";
 
 const schema = z.object({
   description: z
@@ -8,17 +9,16 @@ const schema = z.object({
     .nonempty("Description is required!")
     .min(3, "Description needs to be atleast 3 characters!"),
   amount: z.number({ invalid_type_error: "Amount is required!" }),
-  category: z.string().nonempty("You need to choose a category"),
+  category: z.enum(categories, { message: "You need to choose a category!" }),
 });
 
 type FormData = z.infer<typeof schema>;
 
 interface Props {
-  categories: string[];
   onSubmit: (data: FieldValues) => void;
 }
 
-const ExpenseForm = ({ categories, onSubmit }: Props) => {
+const ExpenseForm = ({ onSubmit }: Props) => {
   const {
     register,
     handleSubmit,

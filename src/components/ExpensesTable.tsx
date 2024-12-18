@@ -41,6 +41,8 @@ const ExpensesTable = ({ items, onDelete }: Props) => {
         <tr>
           <th scope="row">Total</th>
           <td>{total}</td>
+          <td></td>
+          <td></td>
         </tr>
       </tfoot>
     </table>

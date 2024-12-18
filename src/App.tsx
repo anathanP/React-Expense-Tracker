@@ -14,12 +14,13 @@ const App = () => {
     setExpenses([
       ...expenses,
       {
-        id: data.id,
+        id: expenses.length === 0 ? 1 : expenses[expenses.length - 1].id + 1,
         description: data.description,
         amount: data.amount,
         category: data.category,
       },
     ]);
+    console.log(expenses);
   };
   const handleDelete = (item: ExpenseData) => {
     setExpenses(expenses.filter((expense) => expense !== item));

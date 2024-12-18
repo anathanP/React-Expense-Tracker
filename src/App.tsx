@@ -23,10 +23,17 @@ const App = () => {
       },
     ]);
   };
+  const handleDelete = (item: ExpenseData) => {
+    setExpenses(expenses.filter((expense) => expense !== item));
+  };
   return (
     <>
       <ExpenseForm categories={categories} onSubmit={handleSubmit} />
-      <ExpensesTable categories={categories} items={expenses} />
+      <ExpensesTable
+        categories={categories}
+        items={expenses}
+        onDelete={handleDelete}
+      />
     </>
   );
 };
